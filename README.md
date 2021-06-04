@@ -18,7 +18,7 @@ _Realice el método de Validar, donde al enviar varios datos en un arreglo podem
 
 _Realice el método de Procesamiento, donde se le envía una cadena de prueba completa con el nombre y los datos, para retornar el resultado calculado._
 
-_Integré los métodos del dominio en para ser llamados desde el método ejecutar.
+_Integré los métodos del dominio en para ser llamados desde el método ejecutar._
 
 _Se ejecutan en la clase Principal en el método estático Main._
 
