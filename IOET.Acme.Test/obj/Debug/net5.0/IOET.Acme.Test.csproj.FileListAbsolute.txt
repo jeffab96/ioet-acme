@@ -102,4 +102,5 @@ C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\obj\Debug\net5.
 C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\obj\Debug\net5.0\ref\IOET.Acme.Test.dll
 C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\obj\Debug\net5.0\IOET.Acme.Test.pdb
 C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\obj\Debug\net5.0\IOET.Acme.Test.genruntimeconfig.cache
-C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\bin\Debug\net5.0\data_empleado1.txt
+C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\bin\Debug\net5.0\data_default.txt
+C:\Users\Famil\OneDrive\Escritorio\IOET\IOET.Acme\IOET.Acme.Test\bin\Debug\net5.0\data.txt
