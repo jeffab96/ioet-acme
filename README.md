@@ -72,6 +72,8 @@ _Ejemplo de ejecución del programa con el parámetro de entrada en la consola d
 
 _**En caso de no enviar ningún parámetro se muestra un mensaje pidiendo el parámetro de entrada**_
 
+_Se tienen dos archivos de prueba **data_default.txt** y **data.txt**, con datos propuestos, en el directorio del proyecto de consola_
+
 
 ## Pruebas 
 
