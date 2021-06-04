@@ -10,7 +10,7 @@ namespace IOET.Ejercicio1
     {
         static void Main(string[] args)
         {
-            new Dominio().Ejecutar(args[0]);
+            new Dominio().Ejecutar(args);
         }
     }
 }

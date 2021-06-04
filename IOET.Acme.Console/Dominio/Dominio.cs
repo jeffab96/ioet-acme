@@ -8,25 +8,33 @@ namespace IOET.Ejercicio1
 {
     public class Dominio
     {
-        static readonly Dictionary<string, TimeSpan> horarios = new Dictionary<string, TimeSpan>()
+        public static readonly Dictionary<string, TimeSpan> horarios = new Dictionary<string, TimeSpan>()
         {
-            { "MananaHoraInicio", new TimeSpan(0, 0, 1) },
+            { "MananaHoraInicio", new TimeSpan(0, 0, 0) },
             { "MananaHoraFin", new TimeSpan(9, 0, 0) },
-            { "TardeHoraInicio", new TimeSpan(9, 0, 1)},
+            { "TardeHoraInicio", new TimeSpan(9, 0, 0)},
             { "TardeHoraFin", new TimeSpan(18, 0, 0)} ,
-            { "NocheHoraInicio", new TimeSpan(18, 0, 1)},
+            { "NocheHoraInicio", new TimeSpan(18, 0, 0)},
             { "NocheHoraFin", new TimeSpan(24, 0, 0)}
         };
+        static int longitudData = 13;
+
+
         /// <summary>
         /// Método que ejecuta el programa
         /// </summary>
         /// <param name="archivo">El nombre del archivo</param>
-        public void Ejecutar(string archivo)
+        public void Ejecutar(string[] archivo)
         {
-            string nombre = archivo ?? "data_empleado1.txt";
-            string text = System.IO.File.ReadAllText(nombre);
-            List<string> empleados = text.Split(';').ToList();
-            empleados.ForEach(f => Procesamiento(f));
+            string nombre = archivo.Length != 0 ? archivo[0] : "";
+            if (nombre.Length == 0)
+                Console.WriteLine("Por favor ingrese un parámetro(archivo) de entrada");
+            else
+            {
+                string text = System.IO.File.ReadAllText(nombre);
+                List<string> empleados = text.Split(';').ToList();
+                empleados.ForEach(f => Procesamiento(f));
+            }
             Console.ReadKey();
         }
         /// <summary>
@@ -34,30 +42,33 @@ namespace IOET.Ejercicio1
         /// </summary>
         /// <param name="text">Texto con datos de una persona.</param>
         /// <returns>Retorna el resultado de la operación.</returns>
-        string Procesamiento(string text)
+        public string Procesamiento(string text)
         {
-            int longitudData = 13;
             string resultado = "";
+            List<DiaHoras> datos = new List<DiaHoras>();
+
             List<string> divisionTexto = text.Split('=').ToList();
             string nombre = divisionTexto[0];
             string data = divisionTexto[1];
             List<string> registros = data.Split(',').ToList();
-            List<DiaHoras> datos = new List<DiaHoras>();
             registros.ForEach(f => datos.Add(new DiaHoras(f.Substring(0, 2), f.Substring(2))));
+
+            //Se ejecutan las validaciones de cada registro.
             List<string> validaciones = new Validaciones().Validar(registros, longitudData);
             if (validaciones.Count == 0)
             {
                 int total = 0;
                 for (int i = 0; i < datos.Count; i++)
                 {
+                    //Realiza el cálculo de cada registro diario.
                     total += Calculo(datos[i]);
                 }
-                resultado = $"The amount to pay {nombre} is:  { total} USD";
+                resultado = $"The amount to pay {nombre} is: { total} USD";
                 Console.WriteLine(resultado);
             }
             else
             {
-                validaciones.ForEach(f => Console.WriteLine(nombre + " " + f.ToString()));
+                validaciones.ForEach(f => Console.WriteLine(nombre + ":" + f.ToString()));
                 resultado = "ERROR";
             }
             return resultado;
@@ -76,18 +87,19 @@ namespace IOET.Ejercicio1
             {
                 if (temp.HoraInicio >= horarios["MananaHoraInicio"] && temp.HoraFin <= horarios["MananaHoraFin"])
                     valorHoras = horas * (int)ValorHorarioSemana.Manana;
-                if (temp.HoraInicio >= horarios["TardeHoraInicio"] && temp.HoraFin <= horarios["TardeHoraFin"])
+                else if (temp.HoraInicio >= horarios["TardeHoraInicio"] && temp.HoraFin <= horarios["TardeHoraFin"])
                     valorHoras = horas * (int)ValorHorarioSemana.Tarde;
-                if (temp.HoraInicio >= horarios["NocheHoraInicio"] && temp.HoraFin <= horarios["NocheHoraFin"])
+                else if (temp.HoraInicio >= horarios["NocheHoraInicio"] && temp.HoraFin <= horarios["NocheHoraFin"])
                     valorHoras = horas * (int)ValorHorarioSemana.Noche;
+
             }
             else if (temp.Dia >= Dias.SA && temp.Dia <= Dias.SU)
             {
                 if (temp.HoraInicio >= horarios["MananaHoraInicio"] && temp.HoraFin <= horarios["MananaHoraFin"])
                     valorHoras = horas * (int)ValorHorarioFinSemana.Manana;
-                if (temp.HoraInicio >= horarios["TardeHoraInicio"] && temp.HoraFin <= horarios["TardeHoraFin"])
+                else if (temp.HoraInicio >= horarios["TardeHoraInicio"] && temp.HoraFin <= horarios["TardeHoraFin"])
                     valorHoras = horas * (int)ValorHorarioFinSemana.Tarde;
-                if (temp.HoraInicio >= horarios["NocheHoraInicio"] && temp.HoraFin <= horarios["NocheHoraFin"])
+                else if (temp.HoraInicio >= horarios["NocheHoraInicio"] && temp.HoraFin <= horarios["NocheHoraFin"])
                     valorHoras = horas * (int)ValorHorarioFinSemana.Noche;
             }
             return valorHoras;
