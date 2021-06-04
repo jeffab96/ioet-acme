@@ -70,7 +70,7 @@ _Ejemplo de ejecución del programa con el parámetro de entrada en la consola d
 > IOET.Acme.Console.exe data.txt
 ```
 
-_**En caso de no enviar ningún parámetro se muestra un mensaje pidiendo el parámetro de entrada_
+_**En caso de no enviar ningún parámetro se muestra un mensaje pidiendo el parámetro de entrada**_
 
 
 ## Pruebas 
